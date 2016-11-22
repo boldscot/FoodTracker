@@ -1,19 +1,24 @@
 //
-//  ViewController.swift
+//  MealViewController.swift
 //  FoodTracker
 //
 //  Created by 20061696 on 18/11/2016.
-//  Copyright © 2016 WIT. All rights reserved.
+//  Copyright © 2016 Apple. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController ,UITextFieldDelegate, UIImagePickerControllerDelegate , UINavigationControllerDelegate {
+class MealViewController: UIViewController ,UITextFieldDelegate, UIImagePickerControllerDelegate , UINavigationControllerDelegate {
     // MARK: Properties
     @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var mealNameLabel: UILabel!
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var ratingControl: RatingControl!
+    @IBOutlet weak var savebutton: UIBarButtonItem!
+    /*
+     This value is either passed by `MealTableViewController` in `prepareForSegue(_:sender:)`
+     or constructed as part of adding a new meal.
+     */
+    var meal: Meal?
     
 
     override func viewDidLoad() {
@@ -39,7 +44,7 @@ class ViewController: UIViewController ,UITextFieldDelegate, UIImagePickerContro
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        mealNameLabel.text = textField.text
+        
     }
     
     // MARK: UIImagePickerControllerDelegate
@@ -60,7 +65,19 @@ class ViewController: UIViewController ,UITextFieldDelegate, UIImagePickerContro
         dismiss(animated: true, completion: nil)
     }
     
-   
+    // MARK: Navigation
+    
+    // This method lets you configure a view controller before it's presented.
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if sender as AnyObject?  === savebutton {
+            let name = nameTextField.text
+            let photo = photoImageView.image
+            let rating = ratingControl.rating
+            
+            // Set the meal to be passed to MealTableViewController after the unwind segue.
+            meal = Meal(name: name!, photo: photo, rating: rating)
+        }
+    }
     
     //MARK: Action
     @IBAction func selectImageFromPhotoLibrary(_ sender: UITapGestureRecognizer) {
@@ -78,5 +95,7 @@ class ViewController: UIViewController ,UITextFieldDelegate, UIImagePickerContro
         
         present(imagePickerController, animated: true, completion: nil)
     }
+    
+    
 
 }
