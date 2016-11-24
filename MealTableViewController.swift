@@ -31,7 +31,10 @@ class MealTableViewController: UITableViewController {
         let photo3 = UIImage(named: "meal3")!
         let meal3 = Meal(name: "Pasta with Meatballs", photo: photo3, rating: 3)!
         
-        meals += [meal1, meal2, meal3]
+        let photo4 = UIImage(named: "meal4")!
+        let meal4 = Meal(name: "Fish and Chips", photo: photo4, rating: 4)!
+        
+        meals += [meal1, meal2, meal3, meal4]
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,14 +68,6 @@ class MealTableViewController: UITableViewController {
         return cell
     }
     
-    @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
-        if let sourceViewController = sender.source as? MealViewController, let meal = sourceViewController.meal {
-            // Add a new meal.
-            let newIndexPath = NSIndexPath(row: meals.count, section: 0)
-            meals.append(meal)
-            tableView.insertRows(at: [newIndexPath as IndexPath], with: .bottom)
-        }
-    }
     
 
     /*
@@ -119,5 +114,20 @@ class MealTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func unwindToMealList(_ sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? MealViewController, let meal = sourceViewController.meal {
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                // Update an existing meal.
+                meals[(selectedIndexPath as NSIndexPath).row] = meal
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            } else {
+                // Add a new meal.
+                let newIndexPath = IndexPath(row: meals.count, section: 0)
+                meals.append(meal)
+                tableView.insertRows(at: [newIndexPath], with: .bottom)
+            }
+        }
+    }
 
 }

@@ -24,7 +24,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jfR-R9-4hF" id="jbW-Nv-x0Z">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="89"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="eiY-MA-eTG">
@@ -140,9 +140,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="New Meal" id="G3s-yL-YcA">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="5sd-bk-bSF"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="jB7-Bn-Ydl">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Owh-aa-ugz">
                             <connections>
-                                <segue destination="vli-zU-xN7" kind="unwind" unwindAction="unwindToMealListWithSender:" id="R7O-Ue-wHr"/>
+                                <segue destination="vli-zU-xN7" kind="unwind" unwindAction="unwindToMealList:" id="u1r-iC-T34"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -150,7 +150,7 @@
                         <outlet property="nameTextField" destination="eEb-yN-lmS" id="5QK-8C-das"/>
                         <outlet property="photoImageView" destination="F9P-TD-V6A" id="0LR-Wv-gd8"/>
                         <outlet property="ratingControl" destination="xNv-a3-r8Y" id="s5s-1b-Vi7"/>
-                        <outlet property="savebutton" destination="jB7-Bn-Ydl" id="ogr-Xg-GIl"/>
+                        <outlet property="saveButton" destination="Owh-aa-ugz" id="hYb-ch-TQl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
